@@ -9,3 +9,7 @@ damit können wir easy ein game grid und so erstellen
 ja GEGE
 http://www.java-online.ch/gamegrid/index.php?inhalt_links=navigation.inc.php&inhalt_mitte=gittergames/pacman.inc.php
 
+
+---
+Zugriff auf Schulserver:
+https://webmail.musin.de/login.php

@@ -1,13 +1,15 @@
 import ch.aplu.jgamegrid.*;
 public class Labyrinth {
 
-    private int[][] Labyrinth = new int[20][20];
     private final static int nbHorzCells = 20;
     private final static int nbVertCells = 20;
+    private int[][] Labyrinth = new int[nbHorzCells][nbVertCells];
+
 
     Labyrinth(){
+        /*
         String maze =
-                "xxxxxxxxxxxxxxx" + // 0
+                        "xxxxxxxxxxxxxxx" + // 0
                         "xxxxxxxxxxxxxxx" + // 1
                         "xx............x" + // 2
                         "xx.xxxx.xxxxx.x" + // 3
@@ -37,12 +39,18 @@ public class Labyrinth {
                 Labyrinth[i][k] = toInt(maze.charAt(15 * i + (29 - k)));
         }
 
+        */
+
+        for(int x = 0; x < nbHorzCells; x++){
+            for(int y= 0; y < nbVertCells; y++){
+                Labyrinth[x][y] = FeldArt.EAT;
+            }
+        }
+
 
     }
 
-    public int getLocartion(Location location) {
-        return Labyrinth[location.x][location.y];
-    }
+
 
     private int toInt(char c)
     {
@@ -53,5 +61,9 @@ public class Labyrinth {
         if (c == ' ')
             return 2;
         return -1;
+    }
+
+    public int getLocation(Location location) {
+        return Labyrinth[location.x][location.y];
     }
 }
