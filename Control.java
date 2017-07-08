@@ -3,6 +3,8 @@ import ch.aplu.jgamegrid.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import static ch.aplu.util.QuitPane.setVisible;
+
 
 public class Control extends GameGrid  {
 
@@ -14,6 +16,7 @@ public class Control extends GameGrid  {
     private final static int nbVertCells = 20;
 
     static Daisy daisy;
+    Feld Felder[][];
 
 
 
@@ -31,18 +34,6 @@ public class Control extends GameGrid  {
         GGBackground background = getBg();
         drawGrid(background);
 
-        addKeyListener(daisy);
-
-
-        /*
-        panel.add(button_start);
-
-        button_start.addActionListener(this);
-        this.addKeyListener(this);
-
-        add(panel);
-        setVisible(true);
-        */
         start();
         setVisible(true);
     }
@@ -50,6 +41,11 @@ public class Control extends GameGrid  {
     void start() {
         System.out.println("LEEEEROY JENKINNNNS");
         daisy = new Daisy();
+        addActor(daisy, new Location(14,10));
+        addKeyListener(daisy);
+        doRun();
+        show();
+
         //start game
     }
 
@@ -58,10 +54,10 @@ public class Control extends GameGrid  {
         Labyrinth labyrinth = new Labyrinth();
         bg.clear(Color.cyan); //Wall
 
-        Color color_terrain = Color.CYAN;
+        Color color_terrain = Color.GRAY;
         Color color_wall = Color.DARK_GRAY;
-        Color color_eat = Color.MAGENTA;
-        Color color_portal = Color.RED;
+        Color color_eat = Color.YELLOW;
+        Color color_portal = Color.BLUE;
 
         for (int x = 0; x < nbHorzCells; x++) {
             for (int y = 0; y < nbVertCells; y++) {
@@ -106,6 +102,7 @@ public class Control extends GameGrid  {
 
 
                 }
+
             }
         }
 

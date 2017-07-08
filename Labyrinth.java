@@ -6,6 +6,7 @@ public class Labyrinth {
     public int[][] labyrinth = new int[nbHorzCells][nbVertCells];
 
 
+
     Labyrinth(){
         String Zeile0 = "00000000000000000000000000000";
         String Zeile1 = "00000111111111111111111100000";

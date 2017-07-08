@@ -13,3 +13,6 @@ http://www.java-online.ch/gamegrid/index.php?inhalt_links=navigation.inc.php&inh
 ---
 Zugriff auf Schulserver:
 https://webmail.musin.de/login.php
+
+--
+wir brauchen neuen array (statt labyrinth) weil wir das Objekt Feld nutzen müssen damit daisy was ist

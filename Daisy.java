@@ -1,24 +1,26 @@
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGKeyListener;
 import ch.aplu.jgamegrid.Location;
+import com.sun.javafx.scene.traversal.Direction;
 
 import java.awt.event.KeyEvent;
 
-public class Daisy extends Summoner implements GGKeyListener{
+public class Daisy extends Actor implements GGKeyListener{
 
     static Location Portal1;
+    int[][]Felder;
+    Labyrinth labyrinth = new Labyrinth();
+
     Daisy() {
-        x = 0;
-        y = 0;
-        ms = 5;
-        riftwalk = false;
-        targetable = true;
+        super(false, "bilder/trollface.gif", 1);
+
+        Felder = labyrinth.getLabyrinth();
     }
 
     //KeyListener
 
     public boolean keyReleased (KeyEvent e){
-        System.out.println("hay");
+
         return true;
     }
 
@@ -28,51 +30,72 @@ public class Daisy extends Summoner implements GGKeyListener{
     @Override
     public boolean keyPressed(KeyEvent evt)
     {
-        Feld nextFeld = null;
+        Location nextFeld = null;
+
+
         switch (evt.getKeyCode())
         {
+            case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
-                nextFeld = (Feld) this.getLocation().getNeighbourLocation(Location.WEST);
+                nextFeld = getLocation().getNeighbourLocation(Feld.WEST);
                 setDirection(Location.WEST);
                 break;
+            case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
-                nextFeld = (Feld) getLocation().getNeighbourLocation(Location.NORTH);
+                nextFeld =  getLocation().getNeighbourLocation(Location.NORTH);
                 setDirection(Location.NORTH);
                 break;
+            case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
-                nextFeld = (Feld) getLocation().getNeighbourLocation(Location.EAST);
+                nextFeld = getLocation().getNeighbourLocation(Location.EAST);
                 setDirection(Location.EAST);
                 break;
+            case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:
-                nextFeld = (Feld) getLocation().getNeighbourLocation(Location.SOUTH);
+                nextFeld = getLocation().getNeighbourLocation(Location.SOUTH);
                 setDirection(Location.SOUTH);
                 break;
+            default: System.out.println("JA GEGE");
         }
 
-        if (nextFeld.getFeldart() == FeldArt.PORTAL1){
 
-        }
 
         if (nextFeld != null && canMove(nextFeld)) {
             setLocation(nextFeld);
-
+             //eat(nextFeld);
         }
         return true;
     }
 
 
 
-    boolean canMove(Feld nextFeld) {
+    boolean canMove(Location nextFeld) {
+
+        /*
         if (nextFeld.getFeldart() == FeldArt.WALL) {
             return false;
         } else {
             return true;
         }
+        */
+        if (Felder[nextFeld.x][nextFeld.y] == FeldArt.WALL) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
+    /*
 
-     void eat(Feld feld){
-        feld.setfeldArt(FeldArt.TERRAIN);
+     void eat(Location next_feld){
+        if(Felder[next_feld.x][next_feld.y] == FeldArt.EAT){
+
+        }
+
+
     }
+    */
+
 
 }
