@@ -1,5 +1,5 @@
-import javax.swing.*;
-import java.awt.*;
+
+
 import ch.aplu.jgamegrid.*;
 
 
@@ -7,11 +7,6 @@ public class Feld extends Location{
 
 
     int feldart;
-    ImageIcon iWall;
-    ImageIcon iEat;
-    ImageIcon iTerrain;
-
-
 
 
     Feld(int x, int y, int feldart){
@@ -25,8 +20,12 @@ public class Feld extends Location{
         }else if(feldart==FeldArt.TERRAIN) {
             feldart = FeldArt.TERRAIN;
 
-        }else if(feldart==FeldArt.PORTAL) {
-            feldart=FeldArt.PORTAL;
+        }else if(feldart==FeldArt.PORTAL1) {
+            feldart=FeldArt.PORTAL1;
+        }else if(feldart==FeldArt.PORTAL2) {
+            feldart=FeldArt.PORTAL2;
+        }else if(feldart==FeldArt.PORTAL3) {
+            feldart=FeldArt.PORTAL3;
 
         }else{
             System.out.print("Feld " + x +" " + y + "hat keine FeldArt");
@@ -47,8 +46,12 @@ public class Feld extends Location{
         }else if(feldart==FeldArt.TERRAIN) {
             feldart = FeldArt.TERRAIN;
 
-        }else if(feldart==FeldArt.PORTAL) {
-            feldart=FeldArt.PORTAL;
+        }else if(feldart==FeldArt.PORTAL1) {
+            feldart=FeldArt.PORTAL1;
+        }else if(feldart==FeldArt.PORTAL2) {
+            feldart=FeldArt.PORTAL2;
+        }else if(feldart==FeldArt.PORTAL3) {
+            feldart=FeldArt.PORTAL3;
 
         }else{
             System.out.print("Feld " + x +" " + y + "hat keine FeldArt,durch methode setfeldArt");

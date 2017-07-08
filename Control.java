@@ -1,16 +1,10 @@
 import ch.aplu.jgamegrid.*;
 
-import javax.swing.*;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 
-public class Control extends GameGrid implements KeyListener, ActionListener {
+public class Control extends GameGrid  {
 
     public static void main(String[] args) {
         Control control = new Control();
@@ -19,6 +13,7 @@ public class Control extends GameGrid implements KeyListener, ActionListener {
     private final static int nbHorzCells = 29;
     private final static int nbVertCells = 20;
 
+    static Daisy daisy;
 
 
 
@@ -36,7 +31,7 @@ public class Control extends GameGrid implements KeyListener, ActionListener {
         GGBackground background = getBg();
         drawGrid(background);
 
-
+        addKeyListener(daisy);
 
 
         /*
@@ -48,13 +43,13 @@ public class Control extends GameGrid implements KeyListener, ActionListener {
         add(panel);
         setVisible(true);
         */
+        start();
         setVisible(true);
     }
 
     void start() {
         System.out.println("LEEEEROY JENKINNNNS");
-
-
+        daisy = new Daisy();
         //start game
     }
 
@@ -63,49 +58,52 @@ public class Control extends GameGrid implements KeyListener, ActionListener {
         Labyrinth labyrinth = new Labyrinth();
         bg.clear(Color.cyan); //Wall
 
-        /*
-        bg.setPaintColor(Color.GREEN); //Eat
-        for (int y = 0; y < nbVertCells; y++)
-        {
-            for (int x = 0; x < nbHorzCells; x++)
-            {
-                Feld feld = new Feld(x, y, FeldArt.EAT);
-                int a = grid.getLocation(feld);
-                if (a == 1 || a == 2)
-                    bg.fillCell(feld, Color.MAGENTA); //Terrain
-                if (a == 1)  // Pill
-                    bg.fillCircle(toPoint(feld), 3);
-            }
-        }
-        */
-
-
+        Color color_terrain = Color.CYAN;
+        Color color_wall = Color.DARK_GRAY;
+        Color color_eat = Color.MAGENTA;
+        Color color_portal = Color.RED;
 
         for (int x = 0; x < nbHorzCells; x++) {
             for (int y = 0; y < nbVertCells; y++) {
                 int[][] felder = labyrinth.getLabyrinth();
-                    //Eat Terrain
+                    //Eat
                 if (felder[x][y] == FeldArt.EAT) {
                     Feld feld = new Feld(x, y, FeldArt.EAT);
-                    bg.fillCell(feld, Color.darkGray);
+                    bg.fillCell(feld, color_terrain);
 
-                    bg.setPaintColor(Color.YELLOW);
+                    bg.setPaintColor(color_eat);
                     bg.fillCircle(toPoint(feld), 3);
-                    //Portal
+                    //Terrain
                 }else if (felder[x][y] == FeldArt.TERRAIN){
                     Feld feld = new Feld(x, y, FeldArt.TERRAIN);
-                    bg.fillCell(feld, Color.darkGray);
+                    bg.fillCell(feld, color_terrain);
+                    //Portal
+                }else if (felder[x][y] == FeldArt.PORTAL1) {
+                    Feld feld = new Feld(x, y, FeldArt.PORTAL1);
+                    bg.fillCell(feld, color_terrain);
 
-                }else if (felder[x][y] == FeldArt.PORTAL) {
-                    Feld feld = new Feld(x, y, FeldArt.PORTAL);
-                    bg.fillCell(feld, Color.darkGray);
-
-                    bg.setPaintColor(Color.blue);
+                    bg.setPaintColor(color_portal);
                     bg.drawCircle(toPoint(feld), 10);
 
+                }else if (felder[x][y] == FeldArt.PORTAL2) {
+                    Feld feld = new Feld(x, y, FeldArt.PORTAL2);
+                    bg.fillCell(feld, color_terrain);
+
+                    bg.setPaintColor(color_portal);
+                    bg.drawCircle(toPoint(feld), 10);
+
+                }else if (felder[x][y] == FeldArt.PORTAL3) {
+                    Feld feld = new Feld(x, y, FeldArt.PORTAL3);
+                    bg.fillCell(feld, color_terrain);
+
+                    bg.setPaintColor(color_portal);
+                    bg.drawCircle(toPoint(feld), 10);
+
+                    //Wall
                 }else if (felder[x][y] == FeldArt.WALL) {
                     Feld feld = new Feld(x, y, FeldArt.WALL);
-                    bg.fillCell(feld, Color.BLACK);
+                    bg.fillCell(feld, color_wall);
+
 
                 }
             }
@@ -113,17 +111,19 @@ public class Control extends GameGrid implements KeyListener, ActionListener {
 
 
     }
+
+    /*
         //KeyListener
-        @Override
-        public void keyReleased (KeyEvent e){
+
+        public boolean keyReleased (KeyEvent e){
+            System.out.println("hay");
+            return false;
         }
 
-        @Override
-        public void keyTyped (KeyEvent e){
-        }
+
 
         @Override
-        public void keyPressed (KeyEvent e){
+        public boolean keyPressed (KeyEvent e){
 
             int Key = e.getKeyCode();
             switch (Key) {
@@ -154,15 +154,11 @@ public class Control extends GameGrid implements KeyListener, ActionListener {
 
             }
 
+            return false;
         }
 
+        */
 
-        //ActionListener
-        @Override
-        public void actionPerformed (ActionEvent e){
-            if (e.getActionCommand().equals("START")) {
-                start();
-            }
 
-        }
+
     }
