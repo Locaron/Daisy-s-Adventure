@@ -1,6 +1,5 @@
-package com.company;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,6 +7,10 @@ import java.awt.event.KeyListener;
 
 
 public class Control extends JFrame implements KeyListener, ActionListener  {
+
+    public static void main(String[] args) {
+        Control control = new Control();
+    }
 
     JButton button_start = new JButton("START");
     JPanel panel = new JPanel();
@@ -21,10 +24,7 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
         setLocation(500,500);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-
-
         panel.add(button_start);
-
 
         button_start.addActionListener(this);
         this.addKeyListener(this);
@@ -34,9 +34,6 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
 
     }
 
-    public static void main(String[] args) {
-        Control control = new Control();
-    }
 
      void start() {
         System.out.println("LEEEEROY JENKINNNNS");
@@ -50,16 +47,12 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
 
 
 
-    //Lee Sin
+    //KeyListener
     @Override
-    public void keyReleased(KeyEvent e){
-        System.out.print("TROLL");
-    }
+    public void keyReleased(KeyEvent e){    }
 
     @Override
-    public void keyTyped(KeyEvent e){
-
-    }
+    public void keyTyped(KeyEvent e){    }
 
     @Override
     public void keyPressed(KeyEvent e){
@@ -95,6 +88,9 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
 
     }
 
+
+
+        //ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getActionCommand().equals("START")){

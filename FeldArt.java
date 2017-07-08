@@ -1,4 +1,3 @@
-package com.company;
 
 public interface FeldArt {
     int WALL = 0;

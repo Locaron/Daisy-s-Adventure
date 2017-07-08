@@ -1,5 +1,3 @@
-package com.company;
-
 import javax.swing.*;
 
 
@@ -13,13 +11,13 @@ public abstract class Summoner {
     void laufen(char richtung) {
 
         switch (richtung) {
-            case 'a':
+            case 'w':
                 label.setText("links");
             case 's':
                 label.setText("unten");
-            case 'd':
+            case 'o':
                 label.setText("rechts");
-            case 'w':
+            case 'n':
                 label.setText("oben");
 
         }
