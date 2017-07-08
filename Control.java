@@ -21,7 +21,7 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
         super("Daisy's Adventure");
         setSize(300,300);
         setResizable(false);
-        setLocation(500,500);
+        setLocationRelativeTo(null); //öffnet in der Mitte vom Screen
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         panel.add(button_start);
@@ -31,9 +31,7 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
 
         add(panel);
         setVisible(true);
-
     }
-
 
      void start() {
         System.out.println("LEEEEROY JENKINNNNS");

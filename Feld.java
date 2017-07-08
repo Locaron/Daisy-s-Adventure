@@ -1,15 +1,14 @@
-import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
+
 
 public class Feld {
 
     int x,y;
-    int art;
-    Image iWall;
-    Image iEat;
-    Image iTerrain;
+    int feldart;
+    ImageIcon iWall;
+    ImageIcon iEat;
+    ImageIcon iTerrain;
 
     Feld(int x,int y){
 
@@ -22,13 +21,7 @@ public class Feld {
 
 
         if(feldart==FeldArt.WALL){
-            /*
-            try {
-                iWall = ImageIO.read(new URL("http://i0.kym-cdn.com/photos/images/newsfeed/000/096/044/trollface.jpg?1296494117"));
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-            */
+
         }else if(feldart==FeldArt.EAT){
 
         }else if(feldart==FeldArt.TERRAIN){
@@ -40,9 +33,21 @@ public class Feld {
 
     }
 
-    public void feldArt(int feldart){
+    public void setfeldArt(int feldart){
+        if(feldart==FeldArt.WALL){
+
+        }else if(feldart==FeldArt.EAT){
+
+        }else if(feldart==FeldArt.TERRAIN){
+
+        }else{
+            System.out.print("Feld " + x +" " + y + "hat keine FeldArt");
+        }
 
     }
 
+    public int getArt() {
+        return feldart;
+    }
 }
 
