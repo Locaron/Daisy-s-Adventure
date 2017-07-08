@@ -1,3 +1,5 @@
+import ch.aplu.jgamegrid.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,24 +8,33 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class Control extends JFrame implements KeyListener, ActionListener  {
+public class Control extends GameGrid implements KeyListener, ActionListener  {
 
     public static void main(String[] args) {
         Control control = new Control();
     }
 
+    private final static int nbHorzCells = 20;
+    private final static int nbVertCells = 20;
+
+    GGBackground background;
+    /*
     JButton button_start = new JButton("START");
     JPanel panel = new JPanel();
     JLabel label = new JLabel("Hier könnte ihre Werbung stehen");
+    */
 
 
     Control() {
-        super("Daisy's Adventure");
-        setSize(300,300);
-        setResizable(false);
-        setLocationRelativeTo(null); //öffnet in der Mitte vom Screen
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super(nbHorzCells, nbVertCells,15, false);
+        setTitle("Daisy´s Adventure");
+        setSimulationPeriod(40);
+        
 
+
+
+
+        /*
         panel.add(button_start);
 
         button_start.addActionListener(this);
@@ -31,12 +42,13 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
 
         add(panel);
         setVisible(true);
+        */
+        setVisible(true);
     }
 
      void start() {
         System.out.println("LEEEEROY JENKINNNNS");
-        button_start.setVisible(false);
-        panel.add(label);
+
 
         //start game
     }
@@ -65,19 +77,19 @@ public class Control extends JFrame implements KeyListener, ActionListener  {
 
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
-                label.setText("links");
+                System.out.println("links");
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                label.setText("unten");
+                System.out.println("unten");
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                label.setText("rechts");
+                System.out.println("rechts");
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                label.setText("oben");
+                System.out.println("oben");
                  break;
             default:
                 System.out.println("NOPE");

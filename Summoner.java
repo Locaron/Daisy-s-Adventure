@@ -1,24 +1,30 @@
+import ch.aplu.jgamegrid.Actor;
+
 import javax.swing.*;
 
 
-public abstract class Summoner {
+public  class Summoner extends Actor {
 
     int x, y, ms, hp;
     boolean targetable, riftwalk;
 
-    JLabel label;
+
+    Summoner(){
+
+
+    }
 
     void laufen(char richtung) {
 
         switch (richtung) {
             case 'w':
-                label.setText("links");
+                System.out.println("links");
             case 's':
-                label.setText("unten");
+                System.out.println("unten");
             case 'o':
-                label.setText("rechts");
+                System.out.println("rechts");
             case 'n':
-                label.setText("oben");
+                System.out.println("oben");
 
         }
     }
