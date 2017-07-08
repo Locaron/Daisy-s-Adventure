@@ -1,9 +1,9 @@
 import ch.aplu.jgamegrid.*;
 public class Labyrinth {
 
-    private final static int nbHorzCells = 20;
+    private final static int nbHorzCells = 29;
     private final static int nbVertCells = 20;
-    private int[][] Labyrinth = new int[nbHorzCells][nbVertCells];
+    public int[][] labyrinth = new int[nbHorzCells][nbVertCells];
 
 
     Labyrinth(){
@@ -43,27 +43,36 @@ public class Labyrinth {
 
         for(int x = 0; x < nbHorzCells; x++){
             for(int y= 0; y < nbVertCells; y++){
-                Labyrinth[x][y] = FeldArt.EAT;
+                labyrinth[x][y] = FeldArt.EAT;
             }
         }
 
+        //AußenWall
+        for(int x = 0; x < nbHorzCells; x++){
+            labyrinth[x][0] = FeldArt.WALL;
+            labyrinth[x][19] = FeldArt.WALL;
+        }
+
+        for(int y = 0; y < nbVertCells; y++){
+            labyrinth[0][y] = FeldArt.WALL;
+            labyrinth[28][y] = FeldArt.WALL;
+        }
+
+        labyrinth[1][1] = FeldArt.PORTAL;
+        labyrinth[2][2] = FeldArt.WALL;
+        labyrinth[3][3] = FeldArt.TERRAIN;
+
+
+
 
     }
 
-
-
-    private int toInt(char c)
-    {
-        if (c == 'x')
-            return 0;
-        if (c == '.')
-            return 1;
-        if (c == ' ')
-            return 2;
-        return -1;
-    }
 
     public int getLocation(Location location) {
-        return Labyrinth[location.x][location.y];
+        return labyrinth[location.x][location.y];
+    }
+
+    public int[][] getLabyrinth() {
+        return labyrinth;
     }
 }

@@ -10,14 +10,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-public class Control extends GameGrid implements KeyListener, ActionListener  {
+public class Control extends GameGrid implements KeyListener, ActionListener {
 
     public static void main(String[] args) {
         Control control = new Control();
     }
 
-    private final static int nbHorzCells = 20;
+    private final static int nbHorzCells = 29;
     private final static int nbVertCells = 20;
+
+
 
 
     /*
@@ -28,7 +30,7 @@ public class Control extends GameGrid implements KeyListener, ActionListener  {
 
 
     Control() {
-        super(nbHorzCells, nbVertCells,15, false);
+        super(nbHorzCells, nbVertCells, 30, false);
         setTitle("Daisy´s Adventure");
         setSimulationPeriod(40);
         GGBackground background = getBg();
@@ -49,7 +51,7 @@ public class Control extends GameGrid implements KeyListener, ActionListener  {
         setVisible(true);
     }
 
-     void start() {
+    void start() {
         System.out.println("LEEEEROY JENKINNNNS");
 
 
@@ -57,10 +59,9 @@ public class Control extends GameGrid implements KeyListener, ActionListener  {
     }
 
 
-    private void drawGrid(GGBackground bg)
-    {
-        Labyrinth grid = new Labyrinth();
-        bg.clear(Color.BLACK); //Wall
+    private void drawGrid(GGBackground bg) {
+        Labyrinth labyrinth = new Labyrinth();
+        bg.clear(Color.cyan); //Wall
 
         /*
         bg.setPaintColor(Color.GREEN); //Eat
@@ -78,58 +79,90 @@ public class Control extends GameGrid implements KeyListener, ActionListener  {
         }
         */
 
+
+
+        for (int x = 0; x < nbHorzCells; x++) {
+            for (int y = 0; y < nbVertCells; y++) {
+                int[][] felder = labyrinth.getLabyrinth();
+                    //Eat Terrain
+                if (felder[x][y] == FeldArt.EAT) {
+                    Feld feld = new Feld(x, y, FeldArt.EAT);
+                    bg.fillCell(feld, Color.darkGray);
+
+                    bg.setPaintColor(Color.YELLOW);
+                    bg.fillCircle(toPoint(feld), 3);
+                    //Portal
+                }else if (felder[x][y] == FeldArt.TERRAIN){
+                    Feld feld = new Feld(x, y, FeldArt.TERRAIN);
+                    bg.fillCell(feld, Color.darkGray);
+
+                }else if (felder[x][y] == FeldArt.PORTAL) {
+                    Feld feld = new Feld(x, y, FeldArt.PORTAL);
+                    bg.fillCell(feld, Color.darkGray);
+
+                    bg.setPaintColor(Color.blue);
+                    bg.drawCircle(toPoint(feld), 10);
+
+                }else if (felder[x][y] == FeldArt.WALL) {
+                    Feld feld = new Feld(x, y, FeldArt.WALL);
+                    bg.fillCell(feld, Color.BLACK);
+
+                }
+            }
+        }
+
+
     }
+        //KeyListener
+        @Override
+        public void keyReleased (KeyEvent e){
+        }
 
+        @Override
+        public void keyTyped (KeyEvent e){
+        }
 
-    //KeyListener
-    @Override
-    public void keyReleased(KeyEvent e){    }
+        @Override
+        public void keyPressed (KeyEvent e){
 
-    @Override
-    public void keyTyped(KeyEvent e){    }
+            int Key = e.getKeyCode();
+            switch (Key) {
 
-    @Override
-    public void keyPressed(KeyEvent e){
+                case KeyEvent.VK_P:
+                case KeyEvent.VK_ESCAPE:
+                    //pause
+                    break;
 
-        int Key = e.getKeyCode();
-        switch (Key){
+                case KeyEvent.VK_A:
+                case KeyEvent.VK_LEFT:
+                    System.out.println("links");
+                    break;
+                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_S:
+                    System.out.println("unten");
+                    break;
+                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_D:
+                    System.out.println("rechts");
+                    break;
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
+                    System.out.println("oben");
+                    break;
+                default:
+                    System.out.println("NOPE");
 
-            case KeyEvent.VK_P:
-            case KeyEvent.VK_ESCAPE:
-                //pause
-                break;
-
-            case KeyEvent.VK_A:
-            case KeyEvent.VK_LEFT:
-                System.out.println("links");
-                break;
-            case KeyEvent.VK_DOWN:
-            case KeyEvent.VK_S:
-                System.out.println("unten");
-                break;
-            case KeyEvent.VK_RIGHT:
-            case KeyEvent.VK_D:
-                System.out.println("rechts");
-                break;
-            case KeyEvent.VK_UP:
-            case KeyEvent.VK_W:
-                System.out.println("oben");
-                 break;
-            default:
-                System.out.println("NOPE");
+            }
 
         }
 
-    }
-
-
 
         //ActionListener
-    @Override
-    public void actionPerformed(ActionEvent e) {
-       if(e.getActionCommand().equals("START")){
-           start();
-       }
+        @Override
+        public void actionPerformed (ActionEvent e){
+            if (e.getActionCommand().equals("START")) {
+                start();
+            }
 
+        }
     }
-}
