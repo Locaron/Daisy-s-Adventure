@@ -6,12 +6,12 @@ public class Labyrinth {
     public String[] map = {
             "00000000000000000000000000000",
             "00000111111111111111111100000",
-            "01130101010000100001010103110",
+            "01130101010000100001010104110",
             "01000101011111111111010100010",
             "01000101000100000100010100010",
             "01111111111111111111111111110",
             "00010100010100100101000101000",
-            "01110113010101110101031101110",
+            "01110115010101110101061101110",
             "01000100010101110101000100010",
             "01110100010100000101000101110",
             "01111111111111111111111111110",
@@ -22,12 +22,13 @@ public class Labyrinth {
             "00010010100111011100101001000",
             "01111110110101010101101111110",
             "01001010010101010101001010010",
-            "01301011111101110111111010310",
+            "01701011111101110111111010810",
             "00000000000000000000000000000",
     };
 
     public int[][] labyrinth = new int[nbHorzCells][nbVertCells];
     public Feld[][] felder = new Feld[nbHorzCells][nbVertCells];
+    public Feld[][]  portals = new Feld[nbHorzCells][nbVertCells];
 
 
 
@@ -38,6 +39,24 @@ public class Labyrinth {
                 labyrinth[x][y] =(map[y].charAt(x) - '0'); // -'0' um es zum int zu machen
                 */
                 felder[x][y] =(new Feld(x ,y ,map[y].charAt(x) - '0'));
+
+                switch (felder[x][y].getFeldart()){
+                    case FeldArt.PORTAL1_1: portals[1][1]=felder[x][y];
+                        break;
+                    case FeldArt.PORTAL1_2: portals[1][2]=felder[x][y];
+                        break;
+                    case FeldArt.PORTAL2_1: portals[1][1]=felder[x][y];
+                        break;
+                    case FeldArt.PORTAL2_2: portals[1][2]=felder[x][y];
+                        break;
+                    case FeldArt.PORTAL3_1: portals[1][1]=felder[x][y];
+                        break;
+                    case FeldArt.PORTAL3_2: portals[1][2]=felder[x][y];
+                        break;
+
+                }
+
+
 
             }
         }
@@ -58,4 +77,7 @@ public class Labyrinth {
     public Feld[][] getFelder() {
         return felder;
     }
+
+    public Feld[][] getPortals() {
+        return portals;}
 }

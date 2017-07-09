@@ -8,16 +8,29 @@ import java.awt.event.KeyEvent;
 
 public class Daisy extends Actor implements GGKeyListener{
 
-    static Location Portal1;
     Feld[][] felder;
     Feld nextFeld;
+    Feld[][] portals;
     Labyrinth labyrinth = new Labyrinth();
+
+    private static final int nbSprites = 1;
+    private int idSprite = 0;
 
 
     Daisy() {
-        super(false, "bilder/trollface.gif", 1);
+        super(false, "sprites/trollface_0.gif", nbSprites);
 
         felder = labyrinth.getFelder();
+        portals = labyrinth.getPortals();
+    }
+
+    @Override
+    public void act()
+    {
+        ++idSprite;
+        if (idSprite == nbSprites) {
+            idSprite = 0;
+        }
     }
 
     //KeyListener
@@ -106,6 +119,8 @@ public class Daisy extends Actor implements GGKeyListener{
 
         }
         */
+             portal(nextFeld);
+
 
             if (canMove(nextFeld)) {
 
@@ -134,11 +149,43 @@ public class Daisy extends Actor implements GGKeyListener{
     }
 
 
+    void portal(Feld nextFeld) {
+        switch (nextFeld.feldart){
+            case FeldArt.PORTAL1_1: teleport(portals[1][2]);
+            break;
+            case FeldArt.PORTAL1_2: teleport(portals[1][1]);
+                break;
+            case FeldArt.PORTAL2_1: teleport(portals[2][2]);
+                break;
+            case FeldArt.PORTAL2_2: teleport(portals[2][1]);
+                break;
+            case FeldArt.PORTAL3_1: teleport(portals[3][2]);
+                break;
+            case FeldArt.PORTAL3_2: teleport(portals[3][1]);
+                break;
+
+
+        }
+    }
+
+
+
     void eat(Feld nextFeld){
         if(nextFeld.getFeldart() == FeldArt.EAT){
             felder[nextFeld.getX()][nextFeld.getY()].setfeldArt(FeldArt.TERRAIN);
             getBackground().fillCell(nextFeld, Color.gray);
         }
+
     }
+
+    void teleport(Feld feld) {
+        if(feld.getFeldart()!=FeldArt.WALL) {
+            setLocation(feld);
+        }else {
+            System.out.println("cannot teleport into a wall");
+        }
+    }
+
+
 
 }
