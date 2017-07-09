@@ -16,7 +16,7 @@ public class Control extends GameGrid  {
     private final static int nbVertCells = 20;
 
     static Daisy daisy;
-    Feld Felder[][];
+    Feld felder[][];
 
 
 
@@ -52,56 +52,55 @@ public class Control extends GameGrid  {
 
     private void drawGrid(GGBackground bg) {
         Labyrinth labyrinth = new Labyrinth();
-        bg.clear(Color.cyan); //Wall
+        bg.clear(Color.cyan); //Wenn nicht ausgefüllt
 
+        //Farben
         Color color_terrain = Color.GRAY;
         Color color_wall = Color.DARK_GRAY;
         Color color_eat = Color.YELLOW;
         Color color_portal = Color.BLUE;
 
         for (int x = 0; x < nbHorzCells; x++) {
-            for (int y = 0; y < nbVertCells; y++) {
-                int[][] felder = labyrinth.getLabyrinth();
-                    //Eat
-                if (felder[x][y] == FeldArt.EAT) {
-                    Feld feld = new Feld(x, y, FeldArt.EAT);
-                    bg.fillCell(feld, color_terrain);
+            for (int y = 0; y < nbVertCells; y++) { //Für alle Felder
+                Feld[][] felder = labyrinth.getFelder();
 
-                    bg.setPaintColor(color_eat);
-                    bg.fillCircle(toPoint(feld), 3);
+                //Eat
+                if (felder[x][y].getFeldart() == FeldArt.EAT) {
+                    bg.fillCell(felder[x][y], color_terrain); //macht es zu Terrain
+
+                    bg.setPaintColor(color_eat);              //zeichnet Essen hin
+                    bg.fillCircle(toPoint(felder[x][y]), 3);
                     //Terrain
-                }else if (felder[x][y] == FeldArt.TERRAIN){
-                    Feld feld = new Feld(x, y, FeldArt.TERRAIN);
-                    bg.fillCell(feld, color_terrain);
+                }else if (felder[x][y].getFeldart() == FeldArt.TERRAIN){
+                    bg.fillCell(felder[x][y], color_terrain); //macht es zu Terrain
                     //Portal
-                }else if (felder[x][y] == FeldArt.PORTAL1) {
-                    Feld feld = new Feld(x, y, FeldArt.PORTAL1);
-                    bg.fillCell(feld, color_terrain);
+                }else if (felder[x][y].getFeldart() == FeldArt.PORTAL1) {
+                    bg.fillCell(felder[x][y], color_terrain);
 
                     bg.setPaintColor(color_portal);
-                    bg.drawCircle(toPoint(feld), 10);
+                    bg.drawCircle(toPoint(felder[x][y]), 10);
 
-                }else if (felder[x][y] == FeldArt.PORTAL2) {
-                    Feld feld = new Feld(x, y, FeldArt.PORTAL2);
-                    bg.fillCell(feld, color_terrain);
-
-                    bg.setPaintColor(color_portal);
-                    bg.drawCircle(toPoint(feld), 10);
-
-                }else if (felder[x][y] == FeldArt.PORTAL3) {
-                    Feld feld = new Feld(x, y, FeldArt.PORTAL3);
-                    bg.fillCell(feld, color_terrain);
+                }else if (felder[x][y].getFeldart() == FeldArt.PORTAL2) {
+                    bg.fillCell(felder[x][y], color_terrain);
 
                     bg.setPaintColor(color_portal);
-                    bg.drawCircle(toPoint(feld), 10);
+                    bg.drawCircle(toPoint(felder[x][y]), 10);
+
+                }else if (felder[x][y].getFeldart() == FeldArt.PORTAL3) {
+                    bg.fillCell(felder[x][y], color_terrain);
+
+                    bg.setPaintColor(color_portal);
+                    bg.drawCircle(toPoint(felder[x][y]), 10);
 
                     //Wall
-                }else if (felder[x][y] == FeldArt.WALL) {
-                    Feld feld = new Feld(x, y, FeldArt.WALL);
-                    bg.fillCell(feld, color_wall);
+                }else if (felder[x][y].getFeldart() == FeldArt.WALL) {
+                    bg.fillCell(felder[x][y], color_wall);
 
-
+                }else {
+                    System.out.println("FeldArt OutOfBoundsExeption bei Feld: " + x + " " + y);
                 }
+
+
 
             }
         }
@@ -109,52 +108,6 @@ public class Control extends GameGrid  {
 
     }
 
-    /*
-        //KeyListener
-
-        public boolean keyReleased (KeyEvent e){
-            System.out.println("hay");
-            return false;
-        }
-
-
-
-        @Override
-        public boolean keyPressed (KeyEvent e){
-
-            int Key = e.getKeyCode();
-            switch (Key) {
-
-                case KeyEvent.VK_P:
-                case KeyEvent.VK_ESCAPE:
-                    //pause
-                    break;
-
-                case KeyEvent.VK_A:
-                case KeyEvent.VK_LEFT:
-                    System.out.println("links");
-                    break;
-                case KeyEvent.VK_DOWN:
-                case KeyEvent.VK_S:
-                    System.out.println("unten");
-                    break;
-                case KeyEvent.VK_RIGHT:
-                case KeyEvent.VK_D:
-                    System.out.println("rechts");
-                    break;
-                case KeyEvent.VK_UP:
-                case KeyEvent.VK_W:
-                    System.out.println("oben");
-                    break;
-                default:
-                    System.out.println("NOPE");
-
-            }
-
-            return false;
-        }
-
-        */
 
 
 

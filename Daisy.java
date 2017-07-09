@@ -28,43 +28,52 @@ public class Daisy extends Actor implements GGKeyListener{
 
 
     @Override
-    public boolean keyPressed(KeyEvent evt)
-    {
-        Location nextFeld = null;
+    public boolean keyPressed(KeyEvent evt) {
+        Location nextFeld_Location = null;
+        Feld nextFeld_Feld = null;
 
 
-        switch (evt.getKeyCode())
-        {
+        switch (evt.getKeyCode()) {
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
-                nextFeld = getLocation().getNeighbourLocation(Feld.WEST);
+                nextFeld_Location = getLocation().getNeighbourLocation(Feld.WEST);
                 setDirection(Location.WEST);
                 break;
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
-                nextFeld =  getLocation().getNeighbourLocation(Location.NORTH);
+                nextFeld_Location = getLocation().getNeighbourLocation(Location.NORTH);
                 setDirection(Location.NORTH);
                 break;
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
-                nextFeld = getLocation().getNeighbourLocation(Location.EAST);
+                nextFeld_Location = getLocation().getNeighbourLocation(Location.EAST);
                 setDirection(Location.EAST);
                 break;
             case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:
-                nextFeld = getLocation().getNeighbourLocation(Location.SOUTH);
+                nextFeld_Location = getLocation().getNeighbourLocation(Location.SOUTH);
                 setDirection(Location.SOUTH);
                 break;
-            default: System.out.println("JA GEGE");
+            default:
+                System.out.println("JA GEGE");
         }
 
 
 
+
+        /*
         if (nextFeld != null && canMove(nextFeld)) {
-            setLocation(nextFeld);
+         setLocation(nextFeld);
              //eat(nextFeld);
         }
+        */
+
+
         return true;
+    }
+
+    public Feld getFeld(){
+        return  new Feld(getLocation(),getFeld().feldart);
     }
 
 
