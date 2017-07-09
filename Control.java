@@ -16,6 +16,7 @@ public class Control extends GameGrid  {
     private final static int nbVertCells = 20;
 
     static Daisy daisy;
+    Nocturne nocturne1;
     Feld felder[][];
 
 
@@ -41,9 +42,12 @@ public class Control extends GameGrid  {
     void start() {
         System.out.println("LEEEEROY JENKINNNNS");
         daisy = new Daisy();
+        nocturne1 = new Nocturne("blau");
         addActor(daisy, new Location(14,10));
         daisy.setSlowDown(3);
         addKeyListener(daisy);
+        addActor(nocturne1,new Location(14,8));
+        nocturne1.setSlowDown(10);
         doRun();
         show();
 
