@@ -3,18 +3,21 @@ import ch.aplu.jgamegrid.GGKeyListener;
 import ch.aplu.jgamegrid.Location;
 import com.sun.javafx.scene.traversal.Direction;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Daisy extends Actor implements GGKeyListener{
 
     static Location Portal1;
-    int[][]Felder;
+    Feld[][] felder;
+    Feld nextFeld;
     Labyrinth labyrinth = new Labyrinth();
+
 
     Daisy() {
         super(false, "bilder/trollface.gif", 1);
 
-        Felder = labyrinth.getLabyrinth();
+        felder = labyrinth.getFelder();
     }
 
     //KeyListener
@@ -28,11 +31,55 @@ public class Daisy extends Actor implements GGKeyListener{
 
 
     @Override
-    public boolean keyPressed(KeyEvent evt) {
-        Location nextFeld_Location = null;
-        Feld nextFeld_Feld = null;
+    public boolean keyPressed(KeyEvent event) {
 
 
+        int nextX = -1;
+        int nextY = -1;
+        int feldart = -1;
+
+
+            switch (event.getKeyCode()) {
+                case KeyEvent.VK_A:
+                case KeyEvent.VK_LEFT:
+                    nextX = getLocation().getNeighbourLocation(Feld.WEST).getX();
+                    nextY = getLocation().getNeighbourLocation(Feld.WEST).getY();
+                    feldart = felder[nextX][nextY].getFeldart();
+                    nextFeld(nextX, nextY, feldart);
+                    setDirection(Location.WEST);
+                    break;
+
+                case KeyEvent.VK_W:
+                case KeyEvent.VK_UP:
+                    nextX = getLocation().getNeighbourLocation(Feld.NORTH).getX();
+                    nextY = getLocation().getNeighbourLocation(Feld.NORTH).getY();
+                    feldart = felder[nextX][nextY].getFeldart();
+                    nextFeld(nextX, nextY, feldart);
+                    setDirection(Location.NORTH);
+                    break;
+                case KeyEvent.VK_D:
+                case KeyEvent.VK_RIGHT:
+                    nextX = getLocation().getNeighbourLocation(Feld.EAST).getX();
+                    nextY = getLocation().getNeighbourLocation(Feld.EAST).getY();
+                    feldart = felder[nextX][nextY].getFeldart();
+                    nextFeld(nextX, nextY, feldart);
+                    setDirection(Location.EAST);
+                    break;
+                case KeyEvent.VK_S:
+                case KeyEvent.VK_DOWN:
+                    nextX = getLocation().getNeighbourLocation(Feld.SOUTH).getX();
+                    nextY = getLocation().getNeighbourLocation(Feld.SOUTH).getY();
+                    feldart = felder[nextX][nextY].getFeldart();
+                    nextFeld(nextX, nextY, feldart);
+                    setDirection(Location.SOUTH);
+                    break;
+                default:
+                    System.out.println("JA GEGE");
+
+            }
+
+
+    /*
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
@@ -56,55 +103,42 @@ public class Daisy extends Actor implements GGKeyListener{
                 break;
             default:
                 System.out.println("JA GEGE");
-        }
 
-
-
-
-        /*
-        if (nextFeld != null && canMove(nextFeld)) {
-         setLocation(nextFeld);
-             //eat(nextFeld);
         }
         */
 
+            if (canMove(nextFeld)) {
+
+                setLocation(nextFeld);
+                eat(nextFeld);
+            }
 
         return true;
     }
 
-    public Feld getFeld(){
-        return  new Feld(getLocation(),getFeld().feldart);
+
+
+    public void  nextFeld(int x, int y, int feldart){
+        nextFeld = null;
+        nextFeld = new Feld(x ,y , feldart);
     }
 
 
+    boolean canMove(Feld nextFeld) {
 
-    boolean canMove(Location nextFeld) {
-
-        /*
         if (nextFeld.getFeldart() == FeldArt.WALL) {
             return false;
         } else {
             return true;
         }
-        */
-        if (Felder[nextFeld.x][nextFeld.y] == FeldArt.WALL) {
-            return false;
-        } else {
-            return true;
-        }
-
     }
 
-    /*
 
-     void eat(Location next_feld){
-        if(Felder[next_feld.x][next_feld.y] == FeldArt.EAT){
-
+    void eat(Feld nextFeld){
+        if(nextFeld.getFeldart() == FeldArt.EAT){
+            felder[nextFeld.getX()][nextFeld.getY()].setfeldArt(FeldArt.TERRAIN);
+            getBackground().fillCell(nextFeld, Color.gray);
         }
-
-
     }
-    */
-
 
 }

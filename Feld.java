@@ -9,6 +9,7 @@ public class Feld extends Location{
     int feldart;
 
 
+
     Feld(Location location, int feldart){
 
         if(feldart==FeldArt.WALL){
