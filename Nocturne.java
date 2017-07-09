@@ -1,20 +1,9 @@
+import ch.aplu.jgamegrid.Actor;
 
-
-public class Nocturne extends Summoner {
-
+public class Nocturne extends Actor {
+    String farbe;
 
     Nocturne(String farbe){
-        switch (farbe){
-            case "rot":
 
-                break;
-            case "grün":
-
-                break;
-            case "blau":
-
-                break;
-
-        }
     }
 }

@@ -1,4 +1,5 @@
 import ch.aplu.jgamegrid.*;
+
 public class Labyrinth {
 
     private final static int nbHorzCells = 29;
@@ -10,9 +11,9 @@ public class Labyrinth {
             "01000101011111111111010100010",
             "01000101000100000100010100010",
             "01111111111111111111111111110",
-            "00010100010100100101000101000",
-            "01110115010101110101061101110",
-            "01000100010101110101000100010",
+            "00010100010100200101000101000",
+            "01110115010102220101061101110",
+            "01000100010102220101000100010",
             "01110100010100000101000101110",
             "01111111111111111111111111110",
             "01010010000100100100001001010",
@@ -28,40 +29,42 @@ public class Labyrinth {
 
     public int[][] labyrinth = new int[nbHorzCells][nbVertCells];
     public Feld[][] felder = new Feld[nbHorzCells][nbVertCells];
-    public Feld[][]  portals = new Feld[nbHorzCells][nbVertCells];
+    public Location[][] portals = new Feld[3][2];
 
 
-
-    Labyrinth(){
-        for(int y = 0; y < nbVertCells; y++) {
-            for(int x = 0; x < nbHorzCells; x++){
+    Labyrinth() {
+        for (int y = 0; y < nbVertCells; y++) {
+            for (int x = 0; x < nbHorzCells; x++) {
                 /*
                 labyrinth[x][y] =(map[y].charAt(x) - '0'); // -'0' um es zum int zu machen
                 */
-                felder[x][y] =(new Feld(x ,y ,map[y].charAt(x) - '0'));
+                felder[x][y] = (new Feld(x, y, map[y].charAt(x) - '0'));
 
-                switch (felder[x][y].getFeldart()){
-                    case FeldArt.PORTAL1_1: portals[1][1]=felder[x][y];
+                switch (felder[x][y].getFeldart()) {
+                    case FeldArt.PORTAL1_1:
+                        portals[0][0] = felder[x][y];
                         break;
-                    case FeldArt.PORTAL1_2: portals[1][2]=felder[x][y];
+                    case FeldArt.PORTAL1_2:
+                        portals[0][1] = felder[x][y];
                         break;
-                    case FeldArt.PORTAL2_1: portals[1][1]=felder[x][y];
+                    case FeldArt.PORTAL2_1:
+                        portals[1][0] = felder[x][y];
                         break;
-                    case FeldArt.PORTAL2_2: portals[1][2]=felder[x][y];
+                    case FeldArt.PORTAL2_2:
+                        portals[1][1] = felder[x][y];
                         break;
-                    case FeldArt.PORTAL3_1: portals[1][1]=felder[x][y];
+                    case FeldArt.PORTAL3_1:
+                        portals[2][0] = felder[x][y];
                         break;
-                    case FeldArt.PORTAL3_2: portals[1][2]=felder[x][y];
+                    case FeldArt.PORTAL3_2:
+                        portals[2][1] = felder[x][y];
                         break;
 
                 }
 
 
-
             }
         }
-
-
 
 
     }
@@ -78,6 +81,7 @@ public class Labyrinth {
         return felder;
     }
 
-    public Feld[][] getPortals() {
-        return portals;}
+    public Location[][] getPortals() {
+        return portals;
+    }
 }

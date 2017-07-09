@@ -10,7 +10,7 @@ public class Daisy extends Actor implements GGKeyListener{
 
     Feld[][] felder;
     Feld nextFeld;
-    Feld[][] portals;
+    Location[][] portals;
     Labyrinth labyrinth = new Labyrinth();
 
     private static final int nbSprites = 1;
@@ -91,42 +91,12 @@ public class Daisy extends Actor implements GGKeyListener{
 
             }
 
+        if (canMove(nextFeld)) {
 
-    /*
-        switch (evt.getKeyCode()) {
-            case KeyEvent.VK_A:
-            case KeyEvent.VK_LEFT:
-                nextFeld_Location = getLocation().getNeighbourLocation(Feld.WEST);
-                setDirection(Location.WEST);
-                break;
-            case KeyEvent.VK_W:
-            case KeyEvent.VK_UP:
-                nextFeld_Location = getLocation().getNeighbourLocation(Location.NORTH);
-                setDirection(Location.NORTH);
-                break;
-            case KeyEvent.VK_D:
-            case KeyEvent.VK_RIGHT:
-                nextFeld_Location = getLocation().getNeighbourLocation(Location.EAST);
-                setDirection(Location.EAST);
-                break;
-            case KeyEvent.VK_S:
-            case KeyEvent.VK_DOWN:
-                nextFeld_Location = getLocation().getNeighbourLocation(Location.SOUTH);
-                setDirection(Location.SOUTH);
-                break;
-            default:
-                System.out.println("JA GEGE");
-
+            setLocation(nextFeld);
+            eat(nextFeld);
         }
-        */
-             portal(nextFeld);
-
-
-            if (canMove(nextFeld)) {
-
-                setLocation(nextFeld);
-                eat(nextFeld);
-            }
+        portal(nextFeld);
 
         return true;
     }
@@ -151,21 +121,31 @@ public class Daisy extends Actor implements GGKeyListener{
 
     void portal(Feld nextFeld) {
         switch (nextFeld.feldart){
-            case FeldArt.PORTAL1_1: teleport(portals[1][2]);
-            break;
-            case FeldArt.PORTAL1_2: teleport(portals[1][1]);
+            case FeldArt.PORTAL1_1:
+                teleport(portals[0][1]);
                 break;
-            case FeldArt.PORTAL2_1: teleport(portals[2][2]);
+            case FeldArt.PORTAL1_2:
+                teleport(portals[0][0]);
                 break;
-            case FeldArt.PORTAL2_2: teleport(portals[2][1]);
+            case FeldArt.PORTAL2_1:
+                teleport(portals[1][1]);
                 break;
-            case FeldArt.PORTAL3_1: teleport(portals[3][2]);
+            case FeldArt.PORTAL2_2:
+                teleport(portals[1][0]);
                 break;
-            case FeldArt.PORTAL3_2: teleport(portals[3][1]);
+            case FeldArt.PORTAL3_1:
+                teleport(portals[2][1]);
+                break;
+            case FeldArt.PORTAL3_2:
+                teleport(portals[2][0]);
                 break;
 
 
         }
+    }
+
+    void teleport(Location location) {
+        setLocation(location);
     }
 
 
@@ -178,13 +158,7 @@ public class Daisy extends Actor implements GGKeyListener{
 
     }
 
-    void teleport(Feld feld) {
-        if(feld.getFeldart()!=FeldArt.WALL) {
-            setLocation(feld);
-        }else {
-            System.out.println("cannot teleport into a wall");
-        }
-    }
+
 
 
 
