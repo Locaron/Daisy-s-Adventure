@@ -59,14 +59,9 @@ public class Labyrinth {
                     case FeldArt.PORTAL3_2:
                         portals[2][1] = felder[x][y];
                         break;
-
                 }
-
-
             }
         }
-
-
     }
 
     public int getLocation(Location location) {

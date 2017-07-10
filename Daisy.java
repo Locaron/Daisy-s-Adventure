@@ -18,36 +18,21 @@ public class Daisy extends Actor implements GGKeyListener{
     boolean isGame;
     boolean noFeld;
 
-    private static final int nbSprites = 1;
-    private int idSprite = 0;
+
+
 
     Daisy(Control control) {
-        super(false, "sprites/trollface_0.gif", nbSprites);
+        super(false, "sprites/daisy.gif", 1);
         felder = labyrinth.getFelder();
         portals = labyrinth.getPortals();
         isGame = true;
         this.control = control;
-
-
-    }
-
-    @Override
-    public void act()
-    {
-        ++idSprite;
-        if (idSprite == nbSprites) {
-            idSprite = 0;
-        }
     }
 
     //KeyListener
-
     public boolean keyReleased (KeyEvent e){
         return true;
     }
-
-
-
 
     @Override
     public boolean keyPressed(KeyEvent event) {
@@ -68,7 +53,6 @@ public class Daisy extends Actor implements GGKeyListener{
                     }
                     noFeld = true;
                     break;
-
                 case KeyEvent.VK_A:
                 case KeyEvent.VK_LEFT:
                     newKey=event.getKeyCode();
@@ -108,19 +92,15 @@ public class Daisy extends Actor implements GGKeyListener{
 
             }
 
-
         if(!noFeld) {
             if (canMove(nextFeld)) {
                 setLocation(nextFeld);
                 eat(nextFeld);
             }
-
             portal(nextFeld);
         }
-
         return true;
     }
-
 
 
     public void  nextFeld(int x, int y, int feldart){
@@ -136,7 +116,6 @@ public class Daisy extends Actor implements GGKeyListener{
             return true;
         }
     }
-
 
     void portal(Feld nextFeld) {
         switch (nextFeld.feldart){
@@ -161,13 +140,11 @@ public class Daisy extends Actor implements GGKeyListener{
 
 
         }
-        }
+    }
 
     void teleport(Location location) {
         setLocation(location);
     }
-
-
 
     void eat(Feld nextFeld){
         if(nextFeld.getFeldart() == FeldArt.EAT){
@@ -181,10 +158,5 @@ public class Daisy extends Actor implements GGKeyListener{
     int getPunkte(){
         return punkte;
     }
-
-
-
-
-
 }
 

@@ -90,7 +90,6 @@ public class Control extends GameGrid  {
          doPause();
     }
 
-
     private void drawGrid(GGBackground bg) {
         Labyrinth labyrinth = new Labyrinth();
         bg.clear(Color.cyan); //Wenn nicht ausgefüllt
