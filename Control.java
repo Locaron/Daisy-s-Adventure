@@ -21,13 +21,6 @@ public class Control extends GameGrid  {
 
 
 
-    /*
-    JButton button_start = new JButton("START");
-    JPanel panel = new JPanel();
-    JLabel label = new JLabel("Hier könnte ihre Werbung stehen");
-    */
-
-
     Control() {
         super(nbHorzCells, nbVertCells, 30, false);
         setTitle("Daisy´s Adventure");
@@ -37,6 +30,7 @@ public class Control extends GameGrid  {
 
         start();
         setVisible(true);
+
     }
 
     void start() {

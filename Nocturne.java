@@ -106,7 +106,7 @@ public class Nocturne extends Actor {
                 }
                 setLocation(getNextMoveLocation());
                 break;
-            case
+
 
         }
 
