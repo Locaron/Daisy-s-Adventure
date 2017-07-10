@@ -22,19 +22,35 @@ public class Nocturne extends Actor {
         rand = new Random();
     }
 
+    void start(){
+        switch (farbe){
+            case "blau":
+                setLocation(new Location(14,10));
+                break;
+            case "rot":
+                setLocation(new Location(14,5));
+                break;
+            case "grün":
+                setLocation(new Location(14,10));
+                break;
+        }
+    }
+
 
     public void act() {
-
+        /*
         if(farbe.equals("grün")) {
-           follow();
+        follow();
         } else {
             moveNormal();
         }
+        */
+        moveNormal();
     }
 
     void follow() {
         Location daiy_location;
-
+        //muss noch geschrieben werden
     }
 
     //Troll
@@ -106,11 +122,6 @@ public class Nocturne extends Actor {
                 }
                 setLocation(getNextMoveLocation());
                 break;
-<<<<<<< HEAD
-=======
-
->>>>>>> c0d8ab878656d44e270879443d6a05a8844b41eb
-
             case 2:
                 if (canMoveLocation(oldDirection)){
                     setDirection(oldDirection);
@@ -206,72 +217,4 @@ public class Nocturne extends Actor {
         }
     }
 
-
-
-
-
-
-
-
-
-
-    /*
-    void  moveNormal(){
-        Feld nextFeld = null;
-        int moveOptions = 0;
-        int nowX, nowY, nowFeldart;
-        double olddirection = getDirection();
-
-        //Nord
-
-        nowX = getLocation().getNeighbourLocation(Location.NORTH).getX();
-        nowY = getLocation().getNeighbourLocation(Location.NORTH).getY();
-        nowFeldart = felder[nowX][nowY].getFeldart();
-        Feld(nowX,nowY,nowFeldart);
-        if(canMove(feld)) {
-            moveOptions++;
-        }
-
-        //Ost
-        nowX = getLocation().getNeighbourLocation(Location.EAST).getX();
-        nowY = getLocation().getNeighbourLocation(Location.EAST).getY();
-        nowFeldart = felder[nowX][nowY].getFeldart();
-        Feld(nowX,nowY,nowFeldart);
-        if(canMove(feld)) {
-            moveOptions++;
-        }
-
-        //Sueden
-        nowX = getLocation().getNeighbourLocation(Location.SOUTH).getX();
-        nowY = getLocation().getNeighbourLocation(Location.SOUTH).getY();
-        nowFeldart = felder[nowX][nowY].getFeldart();
-        Feld(nowX,nowY,nowFeldart);
-        if(canMove(feld)) {
-            moveOptions++;
-        }
-
-        //Nord
-        nowX = getLocation().getNeighbourLocation(Location.WEST).getX();
-        nowY = getLocation().getNeighbourLocation(Location.WEST).getY();
-        nowFeldart = felder[nowX][nowY].getFeldart();
-        Feld(nowX,nowY,nowFeldart);
-        if(canMove(feld)) {
-            moveOptions++;
-        }
-
-        switch (moveOptions){
-
-            case 2:
-                setDirection(olddirection);
-                setLocation(getNextMoveLocation());
-                break;
-            case 3:
-                int direction = rand.nextInt(3);
-
-                setDirection(direction);
-                setLocation();
-        }
-
-    }
-    */
 }

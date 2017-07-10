@@ -1,7 +1,6 @@
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGKeyListener;
 import ch.aplu.jgamegrid.Location;
-import com.sun.javafx.scene.traversal.Direction;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
