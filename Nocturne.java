@@ -106,7 +106,6 @@ public class Nocturne extends Actor {
         if (canMoveLocation(Location.WEST)){
             moveOptions++;
         }
-        System.out.println(moveOptions);
 
         switch (moveOptions) {
             case 1:
@@ -145,7 +144,6 @@ public class Nocturne extends Actor {
 
         while(!foundlocation) {
             random = rand.nextInt(4) + 1;
-            System.out.println("random = " + random);
             switch(random) {
                 case 1:
                     if(canMoveLocation(Location.NORTH)) {

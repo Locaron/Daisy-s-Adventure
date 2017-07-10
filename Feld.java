@@ -5,10 +5,7 @@ import ch.aplu.jgamegrid.*;
 
 public class Feld extends Location{
 
-
     int feldart;
-
-
 
     Feld(Location location, int feldart){
         this.feldart = feldart;

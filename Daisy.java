@@ -14,15 +14,20 @@ public class Daisy extends Actor implements GGKeyListener{
     Location[][] portals;
     Labyrinth labyrinth = new Labyrinth();
     int punkte;
+    Control control;
+    boolean isGame;
+    boolean noFeld;
 
     private static final int nbSprites = 1;
     private int idSprite = 0;
 
-    Daisy() {
+    Daisy(Control control) {
         super(false, "sprites/trollface_0.gif", nbSprites);
-
         felder = labyrinth.getFelder();
         portals = labyrinth.getPortals();
+        isGame = true;
+        this.control = control;
+
 
     }
 
@@ -38,7 +43,6 @@ public class Daisy extends Actor implements GGKeyListener{
     //KeyListener
 
     public boolean keyReleased (KeyEvent e){
-
         return true;
     }
 
@@ -47,31 +51,32 @@ public class Daisy extends Actor implements GGKeyListener{
 
     @Override
     public boolean keyPressed(KeyEvent event) {
-
-
+        noFeld = false;
         int nextX = -1;
         int nextY = -1;
         int feldart = -1;
 
-
             switch (event.getKeyCode()) {
-
-
-
-
+                case KeyEvent.VK_P:
+                case KeyEvent.VK_SPACE:
+                    if(isGame) {
+                        control.doPause();
+                        isGame = false;
+                    }else{
+                        control.doRun();
+                        isGame = true;
+                    }
+                    noFeld = true;
+                    break;
 
                 case KeyEvent.VK_A:
                 case KeyEvent.VK_LEFT:
-
-
-                        newKey=event.getKeyCode();
-                        nextX = getLocation().getNeighbourLocation(Feld.WEST).getX();
-                        nextY = getLocation().getNeighbourLocation(Feld.WEST).getY();
-                        feldart = felder[nextX][nextY].getFeldart();
-                        nextFeld(nextX, nextY, feldart);
-                        setDirection(Location.WEST);
-
-
+                    newKey=event.getKeyCode();
+                    nextX = getLocation().getNeighbourLocation(Feld.WEST).getX();
+                    nextY = getLocation().getNeighbourLocation(Feld.WEST).getY();
+                    feldart = felder[nextX][nextY].getFeldart();
+                    nextFeld(nextX, nextY, feldart);
+                    setDirection(Location.WEST);
                     break;
 
                 case KeyEvent.VK_W:
@@ -103,12 +108,15 @@ public class Daisy extends Actor implements GGKeyListener{
 
             }
 
-        if (canMove(nextFeld)) {
 
-            setLocation(nextFeld);
-            eat(nextFeld);
+        if(!noFeld) {
+            if (canMove(nextFeld)) {
+                setLocation(nextFeld);
+                eat(nextFeld);
+            }
+
+            portal(nextFeld);
         }
-        portal(nextFeld);
 
         return true;
     }
@@ -122,7 +130,6 @@ public class Daisy extends Actor implements GGKeyListener{
 
 
     boolean canMove(Feld nextFeld) {
-
         if (nextFeld.getFeldart() == FeldArt.WALL) {
             return false;
         } else {
@@ -167,9 +174,12 @@ public class Daisy extends Actor implements GGKeyListener{
             felder[nextFeld.getX()][nextFeld.getY()].setfeldArt(FeldArt.TERRAIN);
             getBackground().fillCell(nextFeld, Color.gray);
             punkte++;
-            System.out.println(punkte);
+            control.setTitle("Daisy´s Adventure - Points: " + punkte);
         }
+    }
 
+    int getPunkte(){
+        return punkte;
     }
 
 

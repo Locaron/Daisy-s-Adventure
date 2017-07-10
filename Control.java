@@ -9,7 +9,7 @@ import static ch.aplu.util.QuitPane.setVisible;
 public class Control extends GameGrid  {
 
     public static void main(String[] args) {
-        Control control = new Control();
+        Control control1 = new Control();
     }
 
     private final static int nbHorzCells = 29;
@@ -19,6 +19,7 @@ public class Control extends GameGrid  {
     Nocturne nocturne_blau;
     Nocturne nocturne_grün;
     Nocturne nocturne_rot;
+    GGBackground background;
     Feld felder[][];
 
 
@@ -27,7 +28,7 @@ public class Control extends GameGrid  {
         super(nbHorzCells, nbVertCells, 30, false);
         setTitle("Daisy´s Adventure");
         setSimulationPeriod(40);
-        GGBackground background = getBg();
+        background = getBg();
         drawGrid(background);
 
         start();
@@ -36,8 +37,8 @@ public class Control extends GameGrid  {
     }
 
     void start() {
-        System.out.println("LEEEEROY JENKINNNNS");
-        daisy = new Daisy();
+
+        daisy = new Daisy(this);
         nocturne_blau = new Nocturne("blau");
         nocturne_rot = new Nocturne("rot");
         nocturne_grün = new Nocturne("grün");
@@ -54,13 +55,39 @@ public class Control extends GameGrid  {
         nocturne_blau.setSlowDown(4);
         nocturne_rot.setSlowDown(4);
 
-
         nocturne_blau.start();
         nocturne_rot.start();
-        doRun();
+        setTitle("Daisy´s Adventure - Press space to start");
         show();
 
-        //start game
+        while (!(nocturne_blau.getLocation().equals(daisy.getLocation()) ||
+                (nocturne_rot.getLocation().equals(daisy.getLocation())) ||
+                (nocturne_grün.getLocation().equals(daisy.getLocation())))){
+            if(daisy.getPunkte()== 100){
+                nocturne_grün.start();
+            }
+            if(daisy.getPunkte() == 270){
+                won();
+            }
+        }
+        background.setPaintColor(Color.red);
+        background.setFont(new Font("Arial", Font.BOLD, 96));
+        background.drawText("Game Over", new Point(toPoint(new Location(6, 10))));
+        addActor(new Actor("sprites/explosion.gif"), daisy.getLocation());
+        setTitle("Game Over");
+        doPause();
+
+    }
+
+     void won(){
+         background.setPaintColor(Color.GREEN);
+         background.setFont(new Font("Arial", Font.BOLD, 96));
+         background.drawText("WON", new Point(toPoint(new Location(10, 10))));
+         addActor(new Actor("sprites/explosion.gif"), nocturne_blau.getLocation());
+         addActor(new Actor("sprites/explosion.gif"), nocturne_rot.getLocation());
+         addActor(new Actor("sprites/explosion.gif"), nocturne_grün.getLocation());
+         setTitle("WON");
+         doPause();
     }
 
 
