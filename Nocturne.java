@@ -28,7 +28,7 @@ public class Nocturne extends Actor {
         if(farbe.equals("grün")) {
            follow();
         } else {
-            randomwalk();
+            moveNormal();
         }
     }
 
@@ -70,6 +70,83 @@ public class Nocturne extends Actor {
         }
 
     }
+
+    void  moveNormal(){
+        int moveOptions = 0;
+        double oldDirection = getDirection();
+
+        //Wie viele möglichkeiten gibt es
+        if (canMoveLocation(Location.SOUTH)){
+            moveOptions++;
+        }
+        if (canMoveLocation(Location.NORTH)){
+            moveOptions++;
+        }
+        if (canMoveLocation(Location.EAST)){
+            moveOptions++;
+        }
+        if (canMoveLocation(Location.WEST)){
+            moveOptions++;
+        }
+        System.out.println(moveOptions);
+
+        switch (moveOptions) {
+            case 1:
+                if (Location.NORTH.equals(oldDirection)) {
+                    setDirection(Location.SOUTH);
+
+                } else if (Location.EAST.equals(oldDirection)) {
+                    setDirection(Location.WEST);
+
+                } else if (Location.SOUTH.equals(oldDirection)) {
+                    setDirection(Location.NORTH);
+
+                } else if (Location.WEST.equals(oldDirection)) {
+                    setDirection(Location.EAST);
+                }
+                setLocation(getNextMoveLocation());
+                break;
+            case
+
+        }
+
+    }
+
+    boolean canMove(Feld nextFeld) {
+        if (nextFeld.getFeldart() == FeldArt.WALL) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void  Feld(int x, int y, int feldart){
+        feld = null;
+        feld = new Feld(x ,y , feldart);
+    }
+
+    public boolean canMoveLocation(Location.CompassDirection direction){
+        int x,y,feldart;
+        x = getLocation().getNeighbourLocation(direction).getX();
+        y = getLocation().getNeighbourLocation(direction).getY();
+        feldart = felder[x][y].getFeldart();
+        Feld(x,y,feldart);
+        if(canMove(feld)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     /*
     void  moveNormal(){
@@ -128,28 +205,6 @@ public class Nocturne extends Actor {
                 setLocation();
         }
 
-
-
-
-
-
     }
     */
-
-
-    boolean canMove(Feld nextFeld) {
-        if (nextFeld.getFeldart() == FeldArt.WALL) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-
-    public void  Feld(int x, int y, int feldart){
-        feld = null;
-        feld = new Feld(x ,y , feldart);
-    }
-
-
 }

@@ -42,12 +42,12 @@ public class Control extends GameGrid  {
     void start() {
         System.out.println("LEEEEROY JENKINNNNS");
         daisy = new Daisy();
-        nocturne1 = new Nocturne("blau");
+        nocturne1 = new Nocturne("rot");
         addActor(daisy, new Location(14,10));
         daisy.setSlowDown(3);
         addKeyListener(daisy);
         addActor(nocturne1,new Location(14,8));
-        nocturne1.setSlowDown(10);
+        nocturne1.setSlowDown(30);
         doRun();
         show();
 
