@@ -25,10 +25,10 @@ public class Nocturne extends Actor {
     void start(){
         switch (farbe){
             case "blau":
-                setLocation(new Location(14,10));
+                setLocation(new Location(11,7));
                 break;
             case "rot":
-                setLocation(new Location(14,5));
+                setLocation(new Location(17,7));
                 break;
             case "grün":
                 setLocation(new Location(14,10));
@@ -38,54 +38,12 @@ public class Nocturne extends Actor {
 
 
     public void act() {
-        /*
-        if(farbe.equals("grün")) {
-        follow();
-        } else {
-            moveNormal();
-        }
-        */
         moveNormal();
     }
 
     void follow() {
         Location daiy_location;
         //muss noch geschrieben werden
-    }
-
-    //Troll
-    void randomwalk() {
-        Feld nextFeld = null;
-        int moveOptions = 0;
-        int nowX = -1;
-        int nowY = -1;
-        int nowFeldart = -1;
-        double olddirection = getDirection();
-
-        nowX = getLocation().getNeighbourLocation(olddirection).getX();
-        nowY = getLocation().getNeighbourLocation(olddirection).getY();
-        nowFeldart = felder[nowX][nowY].getFeldart();
-        Feld(nowX,nowY,nowFeldart);
-        if(canMove(feld)){
-            setLocation(getNextMoveLocation());
-        }else{
-            random = rand.nextInt(4-0) + 1;
-
-            if(random == 1) {
-                setDirection(Feld.NORTH);
-                setLocation(getNextMoveLocation());
-            }else if(rand.nextInt(4) == 2) {
-                setDirection(Feld.EAST);
-                setLocation(getNextMoveLocation());
-            }else if(rand.nextInt(4) == 3) {
-                setDirection(Feld.WEST);
-                setLocation(getNextMoveLocation());
-            }else if(rand.nextInt(4) == 4) {
-                setDirection(Feld.SOUTH);
-                setLocation(getNextMoveLocation());
-            }
-        }
-
     }
 
     void  moveNormal(){
