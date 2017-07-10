@@ -1,0 +1,58 @@
+<component name="libraryTable">
+  <library name="src">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/ggkinect/javadoc" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/doc" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/raspisim/javadoc" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/robotsim/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/BtPeerEx1/src" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/BtServerSE/src" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/battleship" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/brownian" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/catgame" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/clock" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/dartgame" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/fifteenpuzzle" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/flyingbird" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/frogger" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/gameoflife" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/ggframetutorial/src" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/ggframetutorialstat/src" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/ggkinect/src" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/langton" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/lightsout" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/lunarlander" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/maumau" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/maze" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/memory" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/pacman" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/piano" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/pong" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/skiresort" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/snake" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/sokoban" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/spaceinvader" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpbattleship" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpmaumau" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpmemory" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpmemoryserver" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpnim" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpnimserver" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpsixtysix" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tcpsixtysixext" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/tetris" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/threebody" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/applications/turtle" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/cardgame_tutorial" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/raspisim/examples" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/raspisim/src" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/robotsim/examples" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/robotsim/src" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/tcp_tutorial" />
+      <root url="jar://$USER_HOME$/Downloads/JGameGrid.zip!/tutorial" />
+    </SOURCES>
+  </library>
+</component>

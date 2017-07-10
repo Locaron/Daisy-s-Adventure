@@ -8,20 +8,23 @@ import java.awt.event.KeyEvent;
 
 public class Daisy extends Actor implements GGKeyListener{
 
+
+    int  oldKey , newKey;
     Feld[][] felder;
     Feld nextFeld;
     Location[][] portals;
     Labyrinth labyrinth = new Labyrinth();
+    int punkte;
 
     private static final int nbSprites = 1;
     private int idSprite = 0;
-
 
     Daisy() {
         super(false, "sprites/trollface_0.gif", nbSprites);
 
         felder = labyrinth.getFelder();
         portals = labyrinth.getPortals();
+
     }
 
     @Override
@@ -53,13 +56,23 @@ public class Daisy extends Actor implements GGKeyListener{
 
 
             switch (event.getKeyCode()) {
+
+
+
+
+
                 case KeyEvent.VK_A:
                 case KeyEvent.VK_LEFT:
-                    nextX = getLocation().getNeighbourLocation(Feld.WEST).getX();
-                    nextY = getLocation().getNeighbourLocation(Feld.WEST).getY();
-                    feldart = felder[nextX][nextY].getFeldart();
-                    nextFeld(nextX, nextY, feldart);
-                    setDirection(Location.WEST);
+
+
+                        newKey=event.getKeyCode();
+                        nextX = getLocation().getNeighbourLocation(Feld.WEST).getX();
+                        nextY = getLocation().getNeighbourLocation(Feld.WEST).getY();
+                        feldart = felder[nextX][nextY].getFeldart();
+                        nextFeld(nextX, nextY, feldart);
+                        setDirection(Location.WEST);
+
+
                     break;
 
                 case KeyEvent.VK_W:
@@ -135,14 +148,14 @@ public class Daisy extends Actor implements GGKeyListener{
                 break;
             case FeldArt.PORTAL3_1:
                 teleport(portals[2][1]);
-                break;
-            case FeldArt.PORTAL3_2:
+                    break;
+                case FeldArt.PORTAL3_2:
                 teleport(portals[2][0]);
                 break;
 
 
         }
-    }
+        }
 
     void teleport(Location location) {
         setLocation(location);
@@ -154,6 +167,8 @@ public class Daisy extends Actor implements GGKeyListener{
         if(nextFeld.getFeldart() == FeldArt.EAT){
             felder[nextFeld.getX()][nextFeld.getY()].setfeldArt(FeldArt.TERRAIN);
             getBackground().fillCell(nextFeld, Color.gray);
+            punkte++;
+            System.out.println(punkte);
         }
 
     }
@@ -163,3 +178,4 @@ public class Daisy extends Actor implements GGKeyListener{
 
 
 }
+

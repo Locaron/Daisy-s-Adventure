@@ -106,6 +106,10 @@ public class Nocturne extends Actor {
                 }
                 setLocation(getNextMoveLocation());
                 break;
+<<<<<<< HEAD
+=======
+
+>>>>>>> c0d8ab878656d44e270879443d6a05a8844b41eb
 
             case 2:
                 if (canMoveLocation(oldDirection)){
