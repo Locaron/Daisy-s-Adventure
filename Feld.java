@@ -11,12 +11,10 @@ public class Feld extends Location{
 
 
     Feld(Location location, int feldart){
-
         this.feldart = feldart;
         //Location
         location.x = x;
         location.y = y;
-
     }
 
     Feld(int x,int y , int feldart){

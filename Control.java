@@ -46,8 +46,8 @@ public class Control extends GameGrid  {
         addActor(daisy, new Location(14,10));
         daisy.setSlowDown(3);
         addKeyListener(daisy);
-        addActor(nocturne1,new Location(14,8));
-        nocturne1.setSlowDown(30);
+        addActor(nocturne1,new Location(2,2));
+        nocturne1.setSlowDown(2);
         doRun();
         show();
 

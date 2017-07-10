@@ -17,9 +17,9 @@ public class Nocturne extends Actor {
 
         this.farbe = farbe;
         felder = labyrinth.getFelder();
-        rand = new Random();
         setDirection(Feld.NORTH);
 
+        rand = new Random();
     }
 
 
@@ -37,6 +37,7 @@ public class Nocturne extends Actor {
 
     }
 
+    //Troll
     void randomwalk() {
         Feld nextFeld = null;
         int moveOptions = 0;
@@ -72,10 +73,11 @@ public class Nocturne extends Actor {
     }
 
     void  moveNormal(){
+        boolean foundlocation = false;
         int moveOptions = 0;
         double oldDirection = getDirection();
 
-        //Wie viele möglichkeiten gibt es
+        //Wie viele Möglichkeiten es gibt
         if (canMoveLocation(Location.SOUTH)){
             moveOptions++;
         }
@@ -92,26 +94,75 @@ public class Nocturne extends Actor {
 
         switch (moveOptions) {
             case 1:
-                if (Location.NORTH.equals(oldDirection)) {
+                //ändert richtung und bewegt sich dann
+                if (270.0 == oldDirection) {         // 270.0 ist norden
                     setDirection(Location.SOUTH);
-
-                } else if (Location.EAST.equals(oldDirection)) {
+                } else if (0.0 == oldDirection) { //0.0 ist osten
                     setDirection(Location.WEST);
-
-                } else if (Location.SOUTH.equals(oldDirection)) {
+                } else if (90.0 == oldDirection) { //...
                     setDirection(Location.NORTH);
-
-                } else if (Location.WEST.equals(oldDirection)) {
+                } else if (180.0 == oldDirection) { //...
                     setDirection(Location.EAST);
                 }
                 setLocation(getNextMoveLocation());
                 break;
-            case
 
+            case 2:
+                if (canMoveLocation(oldDirection)){
+                    setDirection(oldDirection);
+                    setLocation(getNextMoveLocation());
+                } else {
+                    goRandom();
+                }
+
+                break;
+            case 3:
+            case 4:
+                goRandom();
+                break;
         }
 
     }
 
+    void goRandom() {
+        boolean foundlocation = false;
+
+
+        while(!foundlocation) {
+            random = rand.nextInt(4) + 1;
+            System.out.println("random = " + random);
+            switch(random) {
+                case 1:
+                    if(canMoveLocation(Location.NORTH)) {
+                        setDirection(Location.NORTH);
+                        foundlocation = true;
+                    }
+                    break;
+                case 2:
+                    if(canMoveLocation(Location.SOUTH)) {
+                        setDirection(Location.SOUTH);
+                        foundlocation = true;
+                    }
+                    break;
+                case 3:
+                    if(canMoveLocation(Location.WEST)) {
+                        setDirection(Location.WEST);
+                        foundlocation = true;
+                    }
+                    break;
+                case 4:
+                    if(canMoveLocation(Location.EAST)) {
+                        setDirection(Location.EAST);
+                        foundlocation = true;
+                    }
+                    break;
+                default:
+                    System.out.println("random = " + random + ", cannot set Direction");
+            }
+
+        }
+        setLocation(getNextMoveLocation());
+    }
     boolean canMove(Feld nextFeld) {
         if (nextFeld.getFeldart() == FeldArt.WALL) {
             return false;
@@ -138,6 +189,18 @@ public class Nocturne extends Actor {
         }
     }
 
+    public boolean canMoveLocation(double direction){
+        int x,y,feldart;
+        x = getLocation().getNeighbourLocation(direction).getX();
+        y = getLocation().getNeighbourLocation(direction).getY();
+        feldart = felder[x][y].getFeldart();
+        Feld(x,y,feldart);
+        if(canMove(feld)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 
 
